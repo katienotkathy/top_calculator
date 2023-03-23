@@ -8,10 +8,10 @@ buttons.forEach(element => {
 let numberMemory;
 let firstNumber;
 let operatorMemory;
+let result;
 
 function calculate(e) {
     let clickedButton = e.target.innerText;
-    console.log(typeof clickedButton);
     if (numberMemory === undefined) {
         if (clickedButton >= 1 || clickedButton <= 9) {
             numberMemory = clickedButton;
@@ -21,9 +21,11 @@ function calculate(e) {
             console.log("clear all the sheeee");
             updateDisplay("");
             numberMemory = undefined;
+            operatorMemory = undefined;
         }
     }
-    else { //if (numberMemory !== undefined && operatorMemory === undefined){
+    else if (numberMemory !== undefined && operatorMemory === undefined) {
+        console.log("not the first button");
         if (clickedButton >= 1 || clickedButton <= 9) {
             numberMemory += clickedButton;
             updateDisplay(numberMemory);
@@ -59,17 +61,60 @@ function calculate(e) {
             operatorMemory = "divide";
         }
         else if (clickedButton === "=") {
-            let result = operate(operatorMemory,firstNumber,numberMemory);
+            result = operate(operatorMemory,firstNumber,numberMemory);
             updateDisplay(result);
             numberMemory = undefined;
             }
         }
-    // else if (numberMemory !== undefined && operatorMemory !== undefined){
-    //     let firstNumber = operate(operatorMemory,firstNumber,numberMemory);
-    //     updateDisplay("");
-    //     numberMemory = undefined;
-    // }
+    else {
+        console.log("more than one operator");
+        if (clickedButton >= 1 || clickedButton <= 9) {
+            numberMemory += clickedButton;
+            updateDisplay(numberMemory);
+            console.log(numberMemory);
+            }
+        else if (clickedButton === "C") {
+            console.log("clear all the sheeee");
+            updateDisplay("");
+            numberMemory = undefined;
+            operatorMemory = undefined;
+            }
+        else if (clickedButton === "x") {
+            console.log("multiply");
+            firstNumber = operate(operatorMemory,firstNumber,numberMemory);
+            updateDisplay("");
+            numberMemory = undefined;
+            operatorMemory = "multiply";
+            }
+        else if (clickedButton === "+") {
+            console.log("add");
+            firstNumber = operate(operatorMemory,firstNumber,numberMemory);
+            updateDisplay("");
+            numberMemory = undefined;
+            operatorMemory = "add";
+            }
+        else if (clickedButton === "-") {
+            console.log("minus");
+            firstNumber = operate(operatorMemory,firstNumber,numberMemory);
+            updateDisplay("");
+            numberMemory = undefined;
+            operatorMemory = "subtract";
+            }
+        else if (clickedButton === "÷") {
+            console.log("divide");
+            firstNumber = operate(operatorMemory,firstNumber,numberMemory);
+            updateDisplay("");
+            numberMemory = undefined;
+            operatorMemory = "divide";
+            }
+        else if (clickedButton === "=") {
+            result = operate(operatorMemory,firstNumber,numberMemory);
+            updateDisplay(result);
+            numberMemory = undefined;
+            }
+        }
     }
+
     
 
 
