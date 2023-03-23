@@ -82,28 +82,24 @@ function calculate(e) {
         else if (clickedButton === "x") {
             console.log("multiply");
             firstNumber = operate(operatorMemory,firstNumber,numberMemory);
-            updateDisplay("");
             numberMemory = undefined;
             operatorMemory = "multiply";
             }
         else if (clickedButton === "+") {
             console.log("add");
             firstNumber = operate(operatorMemory,firstNumber,numberMemory);
-            updateDisplay("");
             numberMemory = undefined;
             operatorMemory = "add";
             }
         else if (clickedButton === "-") {
             console.log("minus");
             firstNumber = operate(operatorMemory,firstNumber,numberMemory);
-            updateDisplay("");
             numberMemory = undefined;
             operatorMemory = "subtract";
             }
         else if (clickedButton === "÷") {
             console.log("divide");
             firstNumber = operate(operatorMemory,firstNumber,numberMemory);
-            updateDisplay("");
             numberMemory = undefined;
             operatorMemory = "divide";
             }
