@@ -1,4 +1,4 @@
-//where to pick up: workthrough the gotchas oh lord 
+//where to pick up: round the numbers
 
 const buttons = document.querySelectorAll("button");
 buttons.forEach(element => {
@@ -61,9 +61,12 @@ function calculate(e) {
             operatorMemory = "divide";
         }
         else if (clickedButton === "=") {
-            result = operate(operatorMemory,firstNumber,numberMemory);
-            updateDisplay(result);
-            numberMemory = undefined;
+            if (firstNumber !== undefined) {
+                result = operate(operatorMemory,firstNumber,numberMemory);
+                updateDisplay(result);
+                numberMemory = undefined;
+            }
+            
             }
         }
     else {
@@ -82,32 +85,43 @@ function calculate(e) {
         else if (clickedButton === "x") {
             console.log("multiply");
             firstNumber = operate(operatorMemory,firstNumber,numberMemory);
+            updateDisplay(firstNumber);
             numberMemory = undefined;
             operatorMemory = "multiply";
             }
         else if (clickedButton === "+") {
             console.log("add");
             firstNumber = operate(operatorMemory,firstNumber,numberMemory);
+            updateDisplay(firstNumber);
             numberMemory = undefined;
             operatorMemory = "add";
             }
         else if (clickedButton === "-") {
             console.log("minus");
             firstNumber = operate(operatorMemory,firstNumber,numberMemory);
+            updateDisplay(firstNumber);
             numberMemory = undefined;
             operatorMemory = "subtract";
             }
         else if (clickedButton === "÷") {
             console.log("divide");
             firstNumber = operate(operatorMemory,firstNumber,numberMemory);
+            updateDisplay(firstNumber);
             numberMemory = undefined;
             operatorMemory = "divide";
             }
         else if (clickedButton === "=") {
+            if (operatorMemory === "divide" && numberMemory === "0") {
+                updateDisplay("whoopsie, try again");
+                numberMemory = undefined;
+                operatorMemory = undefined;
+            }
+            else {
             result = operate(operatorMemory,firstNumber,numberMemory);
             updateDisplay(result);
             numberMemory = undefined;
             }
+        }
         }
     }
 
@@ -117,18 +131,6 @@ function calculate(e) {
 function updateDisplay(text) {
     const display = document.querySelector(".output");
     display.innerText = text;
-    // When clicked, get what button it was
-    // Check to see if any numbers are stored in memory
-    // If no memory:
-    // And number, add to memory
-    // And anything else, do nothing
-    // If memory:
-    // And number, add to memory
-    // And operator (not equals), store number, store operator, clear display
-    // And decimal, add to memory
-    // If operators (and equals), but no other number in memory, present "error"
-    // If operator, and equals, and other number in memory: call operate function and display result
-    // If it was a clear, clear the display and memory 
 }
 
 function operate(operation,a,b) {
